@@ -1,5 +1,5 @@
-// This content script runs on TrueNAS web pages
-// It will set the shell preference when a shell terminal is opened
+// This content script runs on TrueNAS SCALE web pages
+// It will set the shell preference when the terminal input field is detected
 
 // Listen for shell preference updates from the popup
 browser.runtime.onMessage.addListener(function(message) {
@@ -8,61 +8,84 @@ browser.runtime.onMessage.addListener(function(message) {
   }
 });
 
-// Listen for DOM changes to detect when a terminal is opened
+// Listen for DOM changes to detect when the command input field appears
 const observer = new MutationObserver(function(mutations) {
-  mutations.forEach(function(mutation) {
-    if (mutation.addedNodes && mutation.addedNodes.length > 0) {
-      for (let i = 0; i < mutation.addedNodes.length; i++) {
-        const node = mutation.addedNodes[i];
-        if (node.nodeType === Node.ELEMENT_NODE) {
-          // Look for terminal elements
-          // This selector will need to be adjusted based on TrueNAS web UI structure
-          const terminalElements = node.querySelectorAll('.terminal-container, xterm-terminal');
-          if (terminalElements.length > 0) {
-            applyShellPreference();
-          }
-        }
-      }
-    }
-  });
+  checkForCommandInput();
 });
 
 // Configure the observer to watch for changes to the body and its descendants
 observer.observe(document.body, {
   childList: true,
-  subtree: true
+  subtree: true,
+  attributes: false,
+  characterData: false
 });
 
-// Apply the shell preference when a terminal is detected
-function applyShellPreference() {
+// Initial check when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+  checkForCommandInput();
+});
+
+// Check for the command input field in the applications tab
+function checkForCommandInput() {
+  // Look for the specific input element with the data-test attribute
+  const commandInput = document.querySelector('input[data-test="input-command"]');
+  if (commandInput) {
+    console.log('TrueNAS Shell Selector: Command input detected');
+    applyShellPreference(commandInput);
+  }
+}
+
+// Apply the shell preference when the command input is detected
+function applyShellPreference(commandInput) {
   browser.storage.local.get('shellPreference', function(result) {
     if (result.shellPreference) {
-      setShellPreference(result.shellPreference);
+      setShellPreference(result.shellPreference, commandInput);
+    } else {
+      // Default to bash if no preference is set
+      setShellPreference('bash', commandInput);
     }
   });
 }
 
-// Function to actually set the shell preference in TrueNAS
-function setShellPreference(shell) {
-  // This implementation will need to be adjusted based on how TrueNAS handles shell selection
-  // For example, it might need to find a shell selector dropdown or button and click it,
-  // or it might need to enter a command to change the shell
-  
+// Function to set the shell preference in TrueNAS SCALE UI
+function setShellPreference(shell, commandInput) {
   console.log('Setting shell preference to:', shell);
   
-  // Example implementation - find terminal input and type a shell change command
-  const terminalInputs = document.querySelectorAll('.xterm-helper-textarea, .terminal-input');
-  if (terminalInputs.length > 0) {
-    const input = terminalInputs[0];
-    
-    // Focus the terminal
-    input.focus();
-    
-    // Create and dispatch keyboard events to type the command
-    const shellCommand = `exec ${shell}\n`;
-    
-    // This is a simplistic approach - in a real implementation, you'd want to
-    // use the proper APIs to interact with the terminal
-    document.execCommand('insertText', false, shellCommand);
+  if (!commandInput) {
+    commandInput = document.querySelector('input[data-test="input-command"]');
+    if (!commandInput) {
+      console.error('TrueNAS Shell Selector: Command input not found');
+      return false;
+    }
   }
+  
+  // Focus the command input
+  commandInput.focus();
+  
+  // Set the value of the input field
+  commandInput.value = shell;
+  
+  // Dispatch input event to ensure TrueNAS recognizes the change
+  commandInput.dispatchEvent(new Event('input', { bubbles: true }));
+  
+  // Find and click the submit button
+  setTimeout(() => {
+    const submitButton = document.querySelector('button[data-test="button-choose-pool"]');
+    if (submitButton) {
+      console.log('TrueNAS Shell Selector: Clicking submit button');
+      submitButton.click();
+    } else {
+      console.error('TrueNAS Shell Selector: Submit button not found');
+    }
+  }, 500); // Short delay to ensure the input value is registered
+  
+  return true;
+}
+
+// Add a helper function to detect if we're in the applications tab
+function isInApplicationsTab() {
+  // This is a simple check that might need to be adjusted based on the actual URL structure
+  const url = window.location.href;
+  return url.includes('/apps') || url.includes('/applications');
 }

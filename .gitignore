@@ -1,0 +1,18 @@
+# Node.js dependencies
+node_modules/
+
+# web-ext build output
+web-ext-artifacts/
+
+# Editor specific files
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+
+# OS specific files
+.DS_Store
+Thumbs.db

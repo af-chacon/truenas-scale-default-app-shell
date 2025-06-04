@@ -21,7 +21,20 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*.truenas.com/*", "*://*.truenas.org/*", "*://localhost:*/*"],
+      "matches": [
+        "*://scale.lan.aed.is/*",
+        "*://*.truenas.com/*", 
+        "*://*.truenas.org/*", 
+        "*://*.ixsystems.com/*",
+        "http://localhost/*",
+        "http://localhost:80/*",
+        "http://localhost:8000/*", 
+        "http://localhost:8080/*",
+        "http://localhost:8443/*",
+        "https://localhost/*",
+        "https://localhost:443/*",
+        "https://localhost:8443/*"
+      ],
       "js": ["content_scripts/shell-selector.js"]
     }
   ],

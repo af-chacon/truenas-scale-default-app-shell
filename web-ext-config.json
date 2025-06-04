@@ -1,0 +1,23 @@
+
+{
+  "sourceDir": ".",
+  "run": {
+    "firefox": "firefox",
+    "browserConsole": true,
+    "startUrl": [
+      "about:debugging#/runtime/this-firefox",
+      "https://scale.lan.aed.is/ui/apps"
+    ]
+  },
+  "build": {
+    "overwriteDest": true
+  },
+  "ignoreFiles": [
+    "manifest_v3/**",
+    "web-ext-artifacts/**",
+    "node_modules/**",
+    ".git/**",
+    ".vscode/**",
+    ".github/**"
+  ]
+}

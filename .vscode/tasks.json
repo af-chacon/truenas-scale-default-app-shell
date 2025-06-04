@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "web-ext: run",
+      "type": "shell",
+      "command": "web-ext run --firefox=firefox",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "web-ext: build",
+      "type": "shell",
+      "command": "web-ext build --overwrite-dest",
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "web-ext: lint",
+      "type": "shell",
+      "command": "web-ext lint",
+      "problemMatcher": [],
+      "group": "test"
+    }
+  ]
+}

@@ -1,12 +1,12 @@
 # TrueNAS Shell Selector
 
-A Firefox extension that allows you to select and switch between different shells in the TrueNAS web interface.
+A Firefox extension that allows you to select and switch between different shells in the TrueNAS SCALE web interface.
 
 ## Features
 
 - Easily switch between Bash, Sh, Zsh, and Fish shells
 - Persistent shell preference storage
-- Automatic shell switching when opening a TrueNAS terminal
+- Automatic shell selection in the TrueNAS SCALE applications tab
 - Simple, user-friendly interface
 
 ## Installation
@@ -27,7 +27,21 @@ A Firefox extension that allows you to select and switch between different shell
 1. Click on the TrueNAS Shell Selector icon in your Firefox toolbar
 2. Select your preferred shell (Bash, Sh, Zsh, or Fish)
 3. Click "Save Preference"
-4. The extension will automatically apply your shell preference when you open a terminal in the TrueNAS web interface
+4. When you open the TrueNAS SCALE applications tab and access the shell selector, the extension will automatically:
+   - Fill in your preferred shell in the command input field
+   - Click the "Choose" button to confirm your selection
+
+## How It Works
+
+This extension specifically targets the TrueNAS SCALE web interface. When you visit the applications tab in TrueNAS SCALE, the extension:
+
+1. Detects when the command input field appears on the page
+2. Automatically fills in your selected shell preference
+3. Clicks the "Choose" button to submit the form
+
+The extension uses DOM manipulation to interact with the TrueNAS SCALE UI elements, specifically looking for:
+- The input field with `data-test="input-command"` attribute
+- The submit button with `data-test="button-choose-pool"` attribute
 
 ## Development
 

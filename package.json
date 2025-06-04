@@ -1,0 +1,24 @@
+{
+  "name": "truenas-shell-selector",
+  "version": "1.0.0",
+  "description": "A Firefox extension that allows you to select and switch between different shells in TrueNAS SCALE",
+  "main": "background/background.js",
+  "scripts": {
+    "start": "web-ext run",
+    "build": "web-ext build --overwrite-dest",
+    "lint": "web-ext lint"
+  },
+  "keywords": [
+    "firefox",
+    "extension",
+    "truenas",
+    "scale",
+    "shell",
+    "terminal"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "web-ext": "^7.6.2"
+  }
+}
