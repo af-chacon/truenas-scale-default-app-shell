@@ -20,7 +20,7 @@ browser.runtime.onInstalled.addListener(function(details) {
     
     // Open welcome page
     browser.tabs.create({
-      url: 'https://github.com/your-username/truenas-shell-selector/wiki/Getting-Started'
+      url: 'https://github.com/af-chacon/truenas-scale-default-app-shell/wiki/Getting-Started'
     });
   } else if (details.reason === 'update') {
     // Update version information
