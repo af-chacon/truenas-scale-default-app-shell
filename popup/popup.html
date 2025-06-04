@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h1>TrueNAS Shell Selector</h1>
+    <div class="shell-options">
+      <div class="shell-option">
+        <input type="radio" id="bash" name="shell" value="bash">
+        <label for="bash">Bash</label>
+      </div>
+      <div class="shell-option">
+        <input type="radio" id="sh" name="shell" value="sh">
+        <label for="sh">Sh</label>
+      </div>
+      <div class="shell-option">
+        <input type="radio" id="zsh" name="shell" value="zsh">
+        <label for="zsh">Zsh</label>
+      </div>
+      <div class="shell-option">
+        <input type="radio" id="fish" name="shell" value="fish">
+        <label for="fish">Fish</label>
+      </div>
+    </div>
+    <button id="save-btn">Save Preference</button>
+    <div id="status-message"></div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

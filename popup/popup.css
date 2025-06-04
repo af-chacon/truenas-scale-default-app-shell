@@ -1,0 +1,53 @@
+body {
+  font-family: Arial, sans-serif;
+  width: 300px;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  padding: 15px;
+}
+
+h1 {
+  font-size: 18px;
+  margin-top: 0;
+  color: #0072CE; /* TrueNAS blue */
+  text-align: center;
+}
+
+.shell-options {
+  margin: 15px 0;
+}
+
+.shell-option {
+  margin-bottom: 10px;
+}
+
+label {
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+button {
+  background-color: #0072CE; /* TrueNAS blue */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #005ba1;
+}
+
+#status-message {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 14px;
+  height: 20px;
+  color: #4CAF50;
+}
