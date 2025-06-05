@@ -1,6 +1,5 @@
-
 {
-  "sourceDir": ".",
+  "sourceDir": "dist",
   "run": {
     "firefox": "firefox",
     "browserConsole": true,
@@ -13,11 +12,12 @@
     "overwriteDest": true
   },
   "ignoreFiles": [
-    "manifest_v3/**",
-    "web-ext-artifacts/**",
     "node_modules/**",
     ".git/**",
     ".vscode/**",
-    ".github/**"
+    "src/**",
+    "tsconfig.json",
+    "package.json",
+    "package-lock.json"
   ]
 }

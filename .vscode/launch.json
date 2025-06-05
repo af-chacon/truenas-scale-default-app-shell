@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug TrueNAS Shell Selector",
+      "type": "firefox",
+      "request": "launch",
+      "reAttach": true,
+      "addonPath": "${workspaceFolder}",
+      "firefoxArgs": ["-start-debugger-server"],
+      "reloadOnChange": {
+        "watch": ["${workspaceFolder}/**/*.js", "${workspaceFolder}/**/*.html", "${workspaceFolder}/**/*.css"],
+        "ignore": ["node_modules", ".git"]
+      },
+      "preferences": {
+        "security.csp.enable": false
+      }
+    },
+    {
+      "name": "Debug TrueNAS Shell Selector",
+      "type": "firefox",
+      "request": "launch",
+      "reAttach": true,
+      "addonPath": "${workspaceFolder}/dist",
+      "firefoxArgs": ["-start-debugger-server"]
+    }
+  ]
+}

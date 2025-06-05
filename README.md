@@ -2,6 +2,16 @@
 
 A Firefox extension that allows you to select and switch between different shells in the TrueNAS SCALE web interface.
 
+## Project Organization
+
+This extension is organized to support both Manifest V2 and Manifest V3 formats:
+
+- The main `manifest.json` in the root directory is used for development and building.
+- `manifest_v2/manifest.json` is maintained for Firefox which has better support for Manifest V2.
+- `manifest_v3/manifest.json` is maintained for future compatibility with browsers that require Manifest V3.
+
+When making changes to the extension configuration, you should update all three manifest files to keep them in sync.
+
 ## Features
 
 - Easily switch between Bash, Sh, Zsh, and Fish shells
@@ -55,6 +65,31 @@ The extension uses DOM manipulation to interact with the TrueNAS SCALE UI elemen
 - `icons/` - Contains extension icons
 
 ### Building and Testing
+
+1. Install dependencies:
+```
+npm install
+```
+
+2. Build the extension:
+```
+npm run build
+```
+
+3. Run the extension in Firefox:
+```
+npm run start
+```
+
+4. Package the extension:
+```
+npm run package
+```
+
+5. Lint the extension:
+```
+npm run lint
+```
 
 1. Make your changes to the extension code
 2. Test the extension using the temporary installation method described above

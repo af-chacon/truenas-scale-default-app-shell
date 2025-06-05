@@ -1,5 +1,6 @@
 # Node.js dependencies
 node_modules/
+dist/
 
 # web-ext build output
 web-ext-artifacts/
