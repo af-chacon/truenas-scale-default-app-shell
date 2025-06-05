@@ -1,5 +1,5 @@
 {
-  "sourceDir": "dist",
+  "sourceDir": "dist/",
   "run": {
     "firefox": "firefox",
     "browserConsole": true,
@@ -14,8 +14,8 @@
   "ignoreFiles": [
     "node_modules/**",
     ".git/**",
-    ".vscode/**",
     "src/**",
+    ".vscode/**",
     "tsconfig.json",
     "package.json",
     "package-lock.json"

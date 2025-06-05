@@ -8,7 +8,7 @@
     "copy-assets": "mkdir -p dist/popup dist/icons dist/background dist/content_scripts && cp src/popup/*.html src/popup/*.css dist/popup/ && cp -r src/icons/* dist/icons/ && cp manifest.json dist/",
     "start": "web-ext run --source-dir ./dist/",
     "package": "web-ext build --source-dir ./dist/ --overwrite-dest",
-    "lint": "web-ext lint --source-dir ./dist/",
+    "lint": "web-ext lint --config web-ext-config.json",
     "typecheck": "tsc --noEmit",
     "sync-manifests": "node sync-manifests.js",
     "fix-icons": "node fix-icons.js",
