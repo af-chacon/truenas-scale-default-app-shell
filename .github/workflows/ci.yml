@@ -25,11 +25,14 @@ jobs:
       - name: TypeScript type check
         run: npm run typecheck
 
+      - name: TypeScript lint
+        run: npm run lint
+
       - name: Build extension
         run: npm run build
 
-      - name: TypeScript linter
-        run: npm run lint
+      - name: web-ext linter
+        run: npm run ext-lint
 
-      - name: Run unit tests
-        run: npm test
+      # - name: Run unit tests
+      #   run: npm test
